@@ -1,11 +1,11 @@
 <script>
   import Header from './components/Header.svelte';
   import Intro from './components/Intro.svelte';
-  import BlueskyFeed from './components/BlueskyFeed.svelte';
+  // import BlueskyFeed from './components/BlueskyFeed.svelte';
   import SocialLinks from './components/SocialLinks.svelte';
   import Canvas from './components/Canvas.svelte';
-  import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
-  import { faBluesky } from "@fortawesome/free-brands-svg-icons";
+  // import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
+  // import { faBluesky } from "@fortawesome/free-brands-svg-icons";
 </script>
 
 <Canvas />
@@ -13,14 +13,14 @@
   <Header />
   <SocialLinks />
   <Intro />
-  <div class="feed-container">
+  <!-- <div class="feed-container">
     <div class="feed-header">
       <FontAwesomeIcon class="logo" icon={faBluesky} />
       <span class="header-text">posting through it</span>
       <FontAwesomeIcon class="logo" icon={faBluesky} />
     </div>
     <BlueskyFeed />
-  </div>
+  </div> -->
 </main>
 
 <style>
@@ -32,7 +32,7 @@
     padding: 0 1rem;
   }
 
-  .feed-container {
+  /* .feed-container {
     position: relative;
     width: 100%;
     max-width: 800px;
@@ -80,20 +80,20 @@
 
   .feed-container::-webkit-scrollbar-track {
     background: transparent;
-  }
+  } */
 
   @media (max-width: 600px) {
     main {
       padding: 0.5rem;
     }
 
-    .feed-container {
+    /* .feed-container {
       max-height: 300px;
       padding: 1rem;
     }
 
     .feed-header {
       font-size: 0.9rem;
-    }
+    } */
   }
 </style>
