@@ -6,7 +6,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
 
   const username = process.env.VITE_BLUESKY_USERNAME;
   const password = process.env.VITE_BLUESKY_PASSWORD;
-  
+
   if (!username || !password) {
     return res.status(400).json({ error: "Missing BlueSky credentials." });
   }
@@ -38,7 +38,11 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     // Return posts as JSON
     return res.status(200).json(posts);
   } catch (error) {
-    console.error("Error fetching posts:", error);
+    console.error("Login error:", error.message);
+    if (error.response) {
+      console.error("Error response data:", error.response.data);
+      console.error("Error response status:", error.response.status);
+    }
     return res.status(500).json({ error: "Failed to fetch posts" });
   }
 }
