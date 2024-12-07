@@ -28,6 +28,10 @@
     "vite": "^6.0.1"
   },
   "dependencies": {
-    "@atproto/api": "^0.13.19"
+    "@atproto/api": "^0.13.19",
+    "@fortawesome/fontawesome-svg-core": "^6.7.1",
+    "@fortawesome/free-brands-svg-icons": "^6.7.1",
+    "@fortawesome/free-solid-svg-icons": "^6.7.1",
+    "@fortawesome/svelte-fontawesome": "^0.2.3"
   }
 }
