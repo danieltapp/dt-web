@@ -12,43 +12,57 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
   }
 
   try {
-    // Authenticate the agent
-    console.log("Logging in with username:", username);
-    console.log("Logging in with password:", password.length)
-    console.log("Password includes '!':", password.includes("!"));
-
-    const loginResponse = await agent.login({
-      identifier: username,
-      password,
-    });
-    console.log("Login response:", loginResponse);
-    const did = loginResponse.data.did;
-
-    // Fetch the user's posts using built-in types
-    const feedResponse: AppBskyFeedGetAuthorFeed.Response =
-      await agent.getAuthorFeed({
-        actor: did,
-      });
-
-    // Map the feed data to your desired format
-    const posts = feedResponse.data.feed.map((item) => {
-      const record = item.post.record as { text: string; createdAt: string };
-      return {
-        text: record.text,
-        createdAt: record.createdAt,
-      };
-    });
-
-    // Return posts as JSON
-    return res.status(200).json(posts);
+    const loginResponse = await agent.login({ identifier: username, password });
+    console.log("Login response:", loginResponse.data);
   } catch (error) {
-    console.error("Login error:", error.message);
-    if (error.response) {
-      console.error("Error response data:", error.response.data);
-      console.error("Error response status:", error.response.status);
-    }
-    return res.status(500).json({ error: "Failed to fetch posts" });
+    console.error("Login error details:", {
+      message: error.message,
+      stack: error.stack,
+      status: error.response?.status,
+      data: error.response?.data,
+      headers: error.response?.headers,
+    });
   }
+  
+
+  // try {
+  //   // Authenticate the agent
+  //   console.log("Logging in with username:", username);
+  //   console.log("Logging in with password:", password.length)
+  //   console.log("Password includes '!':", password.includes("!"));
+
+  //   const loginResponse = await agent.login({
+  //     identifier: username,
+  //     password,
+  //   });
+  //   console.log("Login response:", loginResponse);
+  //   const did = loginResponse.data.did;
+
+  //   // Fetch the user's posts using built-in types
+  //   const feedResponse: AppBskyFeedGetAuthorFeed.Response =
+  //     await agent.getAuthorFeed({
+  //       actor: did,
+  //     });
+
+  //   // Map the feed data to your desired format
+  //   const posts = feedResponse.data.feed.map((item) => {
+  //     const record = item.post.record as { text: string; createdAt: string };
+  //     return {
+  //       text: record.text,
+  //       createdAt: record.createdAt,
+  //     };
+  //   });
+
+  //   // Return posts as JSON
+  //   return res.status(200).json(posts);
+  // } catch (error) {
+  //   console.error("Login error:", error.message);
+  //   if (error.response) {
+  //     console.error("Error response data:", error.response.data);
+  //     console.error("Error response status:", error.response.status);
+  //   }
+  //   return res.status(500).json({ error: "Failed to fetch posts" });
+  // }
 }
 
 
