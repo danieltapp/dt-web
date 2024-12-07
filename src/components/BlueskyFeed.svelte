@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { blueskyPosts, fetchBlueskyPosts } from "../stores/blueskyStore";
+  import BlueskyPost from "./BlueskyPost.svelte";
 
   let loading = true;
   let error: string | null = null;
@@ -16,33 +17,21 @@
   });
 </script>
 
-<div class="feed">
-  {#if loading}
-    <p>Loading your posts...</p>
-  {:else if error}
-    <p>{error}</p>
-  {:else}
-    <ul>
-      {#each $blueskyPosts as post}
-        <li>
-          <p>{post.text}</p>
-          <small>{new Date(post.createdAt).toLocaleString()}</small>
-        </li>
-      {/each}
-    </ul>
-  {/if}
-</div>
+{#if loading}
+  <p>Loading your posts...</p>
+{:else if error}
+  <p>{error}</p>
+{:else}
+  <ul>
+    {#each $blueskyPosts as post}
+      <li>
+        <BlueskyPost {post} />
+      </li>
+    {/each}
+  </ul>
+{/if}
 
 <style>
-  .feed {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-  }
-
   ul {
     list-style: none;
     padding: 0;
@@ -50,12 +39,16 @@
   }
 
   li {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);  
+    margin-bottom: 2rem;
   }
 
   li:last-child {
-    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
   }
 </style>
