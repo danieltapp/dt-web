@@ -6,6 +6,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const username = process.env.VITE_BLUESKY_USERNAME;
   const password = process.env.VITE_BLUESKY_PASSWORD;
+  console.log("BLUESKY_USERNAME:", process.env.VITE_BLUESKY_USERNAME);
 
   if (!username || !password) {
     return res.status(400).json({ error: "Missing BlueSky credentials." });
