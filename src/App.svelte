@@ -1,10 +1,12 @@
 <script lang="ts">
   import Canvas from './components/Canvas.svelte';
+  import BlueskyPosts from './components/BlueskyPosts.svelte';
 </script>
 
 <Canvas />
 <main>
   <h1>🚀 DT WEB 🚀</h1>
+  <BlueskyPosts />
 </main>
 
 <style>
