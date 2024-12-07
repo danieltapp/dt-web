@@ -1,7 +1,7 @@
 import { AtpAgent, AppBskyFeedGetAuthorFeed } from "@atproto/api";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(_req: VercelRequest, res: VercelResponse) {
   const agent = new AtpAgent({ service: "https://bsky.social" });
 
   const username = process.env.VITE_BLUESKY_USERNAME;
