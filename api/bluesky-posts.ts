@@ -15,6 +15,8 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     // Authenticate the agent
     console.log("Logging in with username:", username);
     console.log("Logging in with password:", password.length)
+    console.log("Password includes '!':", password.includes("!"));
+
     const loginResponse = await agent.login({
       identifier: username,
       password,
