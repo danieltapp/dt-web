@@ -1,10 +1,26 @@
 <script>
   export let name = "Daniel Tapp"; 
+
+  let displayedName = "";
+  let typingIndex = 0;
+
+  const typeText = async () => {
+    const typingSpeed = 150;
+    for (const char of name) {
+      await new Promise((resolve) => setTimeout(resolve, typingSpeed));
+      displayedName += char;
+    }
+  };
+
+  import { onMount } from "svelte";
+  onMount(() => {
+    typeText();
+  });
 </script>
 
 <header>
   <h1>
-    {name}<span class="blinking-cursor">_</span>
+    {displayedName}<span class="blinking-cursor">_</span>
   </h1>
 </header>
 
@@ -24,6 +40,8 @@
     padding: 0.5rem 1rem;
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    font-family: 'Fira Code', monospace;
+    white-space: nowrap;
   }
 
   .blinking-cursor {
